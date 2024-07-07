@@ -1,0 +1,12 @@
+{
+  "background_color": "#9f2146",
+  "dir": "ltr",
+  "display": "fullscreen",
+  "name": "bryancode.github",
+  "orientation": "landscape",
+  "scope": "/",
+  "short_name": "https://bryancode.github.io/costumer-survey-Uniodonto/",
+  "start_url": "/",
+  "theme_color": "#e0ff7a",
+  "description": "Satisfaction Survey"
+}
