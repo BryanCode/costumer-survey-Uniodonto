@@ -57,9 +57,7 @@
                     <input type="text" class="form-control mt-2" id="otherSource" placeholder="Especificar">
                     <div class="row botoes">
                         <div class="col-12">
-                             <button class="btn btn-primary prev-btn" type="button">Anterior</button>
-
-                            <button class=" btn btn-primary finish-btn" type="button" >Proximo</button>
+                            <button class="btn btn-primary finish-btn">Proximo</button>
                         </div>
                     </div>
                   </div>
@@ -77,9 +75,8 @@
         </div>
       </div>
 
-    <script>
+    <script>/
         const finishBtn = document.querySelector('.finish-btn');
-        const prevBtn = document.querySelector('.prev-btn');
 
         finishBtn.addEventListener('click', () => {
 
@@ -122,11 +119,6 @@
 
 
         });
-
-        prevBtn.addEventListener('click', () => {
-          window.location.href = 'sugestoes.html';
-        });
-    
     </script>
 
     <script src="script.js"></script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de satisfaçâo</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+    <div id="app" >
+        <h5 class="text-center">Envie um comentário</h5>
+        <form>
+          
+        
+         
+          <div class="form-group">
+            <label for="feedback">Sua sugestão ou elogio:</label>
+            <textarea class="form-control" id="feedback" rows="5" placeholder="Escreva aqui sua sugestão ou elogio"></textarea>
+          </div>
+          <div class="row botoes">
+            <div class="col-12">
+                <button class="btn btn-primary prev-btn" type="button">Anterior</button>
+        
+                        <button class="btn btn-primary next-btn" type="button">Proximo</button>
+            </div>
+        </div>
+        </form>
+        <div class="container" style="display: none;">
+            <div class="slider-container" id="slider">
+              <div class="slider-track"></div>
+              <div class="slider-thumb" id="sliderThumb" style="left: 50%;">
+                <img src="arrow.png" alt="seta" class="seta">
+              </div>   
+             
+            </div>
+          </div>
+    
+    </div>    
+ 
+     <script>
+        const nextBtn = document.querySelector('.next-btn');
+        const prevBtn = document.querySelector('.prev-btn');
+
+        nextBtn.addEventListener('click', () => {
+
+            localStorage.setItem('sugestaoComentario', document.getElementById('feedback').value);
+
+            const view = document.getElementById('app');
+            view.style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = 'comentariosGerais.html';
+            }, 500);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            window.location.href = 'satisfacaoGeral.html';
+        });
+    </script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div id="app" class="container vh-100 vw-100">
+    <div id="app">
         <div class="row" style="margin-bottom: 1em;">
             <div class="col-12">
                 <h1 class="text-center">Ajude-nos a melhorar</h1>
@@ -37,23 +37,40 @@
             <div class="container">
                 <div class="slider-container" id="slider">
                   <div class="slider-track"></div>
-                  <div class="slider-thumb" id="sliderThumb" style="left: 50%;"></div>
+                  <div class="slider-thumb" id="sliderThumb" style="left: 50%;">
+                    <img src="arrow.png" alt="seta" class="seta">
+                  </div>   
+                  <div class="row botoes">
+                    <div class="col-12">
+                        <button class="btn btn-primary prev-btn">Anterior</button>
+        
+                        <button class="btn btn-primary next-btn">Proximo</button>
+                    </div>
+                </div>
                 </div>
               </div>
-        </div>    
-
-        <div class="row">
-            <div class="col-12">
-                <button class="btn btn-primary next-btn">Proximo</button>
-            </div>
         </div>
 
     
     </div>    
-    <script>
+ 
+     <script>
         const nextBtn = document.querySelector('.next-btn');
+        const prevBtn = document.querySelector('.prev-btn');
+
         nextBtn.addEventListener('click', () => {
-            window.location.href = 'confiancaTransmitida.html';
+
+            localStorage.setItem('cortesiaDentista', converteResposta(sliderPosition));
+
+            const view = document.getElementById('app');
+            view.style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = 'confiancaTransmitida.html';
+            }, 500);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            window.location.href = 'cortesiaRecepcao.html';
         });
     </script>
     
