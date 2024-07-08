@@ -5,9 +5,9 @@ body, html {
     max-height: 100vh;
     width: 100vw;
     background-color: #DBFC77 !important;
-
     padding: 0; 
 }
+
 h1 {
   display: none;
 }
@@ -16,6 +16,17 @@ h1 {
 font-weight: 700;
 font-size: 2em;
 margin-bottom: 2%;
+margin-top: 6%;
+}
+
+label {
+  font-size: 1.2em;
+}
+
+.line {
+  display: flex !important;
+  justify-content: left;
+  gap: 1em;
 }
 
 #app {
@@ -31,7 +42,6 @@ margin-bottom: 2%;
   background-color: transparent;
   font-weight: 300; 
   margin: 0;
-
 }
 
 .botoes button:hover {
@@ -63,10 +73,10 @@ form {
 }
 
 .next-btn, .prev-btn, .finish-btn {
-  transition: .3s !important; 
-
-  font-size: x-large !important;
-  font-weight: 600;
+    transition: .3s !important; 
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2) !important;
+    font-size: x-large !important;
+    font-weight: 600;
     width: fit-content;
     height: fit-content;
     border-radius: 16px  !important;
@@ -77,8 +87,12 @@ form {
     margin: .5em ;
 }
 
+#divRastreio {
+  max-height: fit-content;
+}
+
 #contactNumber {
-  max-width: 20em;
+  max-width: auto;
 }
 
 .emoji {transition: .5s;
@@ -104,7 +118,7 @@ form {
 
 .slider-container {
     max-width: 80%;
-    margin: 50px auto;
+    margin: 85px auto;
     position: relative;
     height: 50px;
   }
@@ -128,8 +142,8 @@ form {
     display: flex;
     opacity: 1;
     top: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: #9F2146;
     cursor: pointer;
     border-radius: 50%;
