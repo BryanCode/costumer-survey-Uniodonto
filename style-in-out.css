@@ -56,7 +56,7 @@ label {
   height: 100%;
   background-color: #DBFC77;
   z-index: 100;
-  transition: .5s;
+  transition: .2s;
   transform: translateY(100%);
 }
 
