@@ -33,7 +33,7 @@ label {
 }
 
 #app {
-  padding-top: 3.5em;
+  padding-top: 3em;
   background-color: transparent !important;
   display: flex;
   flex-direction: column;
