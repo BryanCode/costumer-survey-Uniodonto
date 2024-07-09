@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&display=swap');
 
 body, html {
-  padding-top: 3em !important;
    transition: .3s;
     margin: 0;
     max-height: 100vh;
@@ -18,7 +17,7 @@ h1 {
 #app h5 {
 font-weight: 700;
 font-size: 2em;
-margin-bottom: 0.2%;
+margin-bottom: 3%;
 margin-top: 0.5%;
 }
 
