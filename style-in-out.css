@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&display=swap');
+
+body, html {
+   transition: .3s;
+    margin: 0;
+    max-height: 100vh;
+    width: 100vw;
+    background-color: #9F2146 !important;
+    padding: 0; 
+    overflow: hidden;
+}
+
+h1 {
+  display: none;
+}
+
+#app h5 {
+font-weight: 700;
+font-size: 2em;
+margin-bottom: 0.2%;
+margin-top: 0.5%;
+}
+
+label {
+  font-size: 1.2em;
+}
+
+.line {
+  display: flex !important;
+  justify-content: left;
+  gap: 1em;
+}
+
+#app {
+  padding-top: 1.5em;
+  background-color: transparent !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: .5s;    
+  opacity: 0;
+  font-family: 'Georama', sans-serif;
+  color: #DBFC77;
+  font-weight: 300; 
+  margin: 0;
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #DBFC77;
+  z-index: 100;
+  transition: .5s;
+  transform: translateY(100%);
+}
+
+.us {
+  transition: .5s;
+  z-index: 0;
+  position: absolute; 
+  filter: invert(100%) contrast(100%) brightness(200%); 
+  width: 100%;
+  left: -50%;
+  top: -100%;
+  animation: rotate 80s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btns button:hover {
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2)) !important;
+  transform: scale(1.02) translate(2px, -2px) !important;
+}
+
+.btns button:active {
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2)) !important;
+  transform: scale(.95) translate(0, 0) !important;
+}
+
+.btns button {
+  z-index: 10;
+}
+
+.botoes {
+  text-align: right;
+  transform: translate(0, 100px);
+}
+
+.active {
+  transform: scale(1.2) translate(0, -10px) !important;
+}
+
+#app img {
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+form {
+  font-size: larger;
+  margin: 0 auto;
+  max-width: 70%;
+  font-weight: 600;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.144));
+}
+
+.next-btn, .prev-btn, .finish-btn, .renova-btn, .urgencia-btn {
+    transition: .3s !important; 
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2) !important;
+    font-size: x-large !important;
+    font-weight: 600;
+    width: fit-content !important;
+    height: fit-content;
+    border-radius: 16px  !important;
+    border: #fff 1px solid !important;
+    background-color: #DBFC77 !important;
+    color: #9F2146;
+    padding: 5px 25px !important;
+    margin: .5em ;
+}
+
+#divRastreio {
+  max-height: fit-content;
+}
+
+#contactNumber {
+  max-width: auto;
+}
+
+.emoji {
+    user-select: none;
+  transition: .5s;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+    width: 100px;
+    display: block;
+    font-size: 3em;
+    text-align: center;
+}
+
+.emojis {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.span-text {
+    font-weight: 700;
+    display: block;
+    font-size: .4em;
+}
+
+.slider-container {
+    max-width: 80%;
+    margin: 85px auto;
+    position: relative;
+    height: 50px;
+  }
+  .slider-track {  
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+    border: 2px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 12px;
+    border-radius: 10px;
+    background: #9F2146;
+    transform: translateY(-50%);
+}
+
+.slider-thumb {
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+    overflow: visible;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    opacity: 1;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    background: #9F2146;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all .3s;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+.slider-thumb:hover {
+   
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.slider-thumb:active {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.seta {
+    transform: translate(0, -50%) scale(.8);
+}
+
+.slider-value {
+    text-align: center;
+    margin-top: 10px;
+}
+

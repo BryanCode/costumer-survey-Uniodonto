@@ -19,11 +19,9 @@ document.querySelectorAll('.checks input').forEach((checkbox) => {
   });
 });
 
-
-window.onload  = () => {
+window.onload = () => {
   appView.style.opacity = '1';
-
-}
+};
 
 const snapToClosest = (percentage) => {
   const snaps = [0, 25, 50, 75, 100];
@@ -53,43 +51,45 @@ const updateSlider = (event) => {
     let percentage = Math.min(Math.max(0, offsetX / rect.width), 1) * 100;
     percentage = snapToClosest(percentage);
 
-    if (percentage === 0) {
-      emojisArr.forEach((emoji) => emoji.classList.remove('active'));
-      emojisArr[0].classList.add('active')
-    } else if (percentage === 25) {
-      emojisArr.forEach((emoji) => emoji.classList.remove('active'));
-      emojisArr[1].classList.add('active')
-    } else if (percentage === 50) {
-      emojisArr.forEach((emoji) => emoji.classList.remove('active'));
-      emojisArr[2].classList.add('active')
-    } else if (percentage === 75) {
-      emojisArr.forEach((emoji) => emoji.classList.remove('active'));
-      emojisArr[3].classList.add('active')
-    } else if (percentage === 100) {
-      emojisArr.forEach((emoji) => emoji.classList.remove('active'));
-      emojisArr[4].classList.add('active');
-    }
+    updateEmojis(percentage);
+    updateSliderPosition(percentage);
+  }
+};
 
-    sliderPosition = percentage;
-    
-    sliderThumb.style.left = `${percentage}%`;
+const updateSliderPosition = (percentage) => {
+  sliderPosition = percentage;
+  sliderThumb.style.left = `${percentage}%`;
+};
+
+const updateEmojis = (percentage) => {
+  emojisArr.forEach((emoji) => emoji.classList.remove('active'));
+  if (percentage === 0) {
+    emojisArr[0].classList.add('active');
+  } else if (percentage === 25) {
+    emojisArr[1].classList.add('active');
+  } else if (percentage === 50) {
+    emojisArr[2].classList.add('active');
+  } else if (percentage === 75) {
+    emojisArr[3].classList.add('active');
+  } else if (percentage === 100) {
+    emojisArr[4].classList.add('active');
   }
 };
 
 function converteRastreio(index) {
   if (index === 0) {
-    return 'Redes sociais'
+    return 'Redes sociais';
   } else if (index === 1) {
-    return 'Rádio'
+    return 'Rádio';
   } else if (index === 2) {
-    return 'Familia'
+    return 'Familia';
   } else if (index === 3) {
-    return 'Amigos'
+    return 'Amigos';
   } else if (index === 4) {
-    return 'Empresa'
+    return 'Empresa';
   } else if (index === 5) {
-    return 'none'
-  }  
+    return 'none';
+  }
 }
 
 function formatDate(date) {
@@ -113,15 +113,15 @@ function formatDate(date) {
 
 function converteResposta(sliderNumber) {
   if (sliderNumber === 0) {
-    return 'Péssimo'
+    return 'Péssimo';
   } else if (sliderNumber === 25) {
-    return 'Ruim'
+    return 'Ruim';
   } else if (sliderNumber === 50) {
-    return 'Regular'
+    return 'Regular';
   } else if (sliderNumber === 75) {
-    return 'Bom'
+    return 'Bom';
   } else if (sliderNumber === 100) {
-    return 'Excelente'
+    return 'Excelente';
   }
 }
 
@@ -133,3 +133,12 @@ document.addEventListener('touchend', stopDrag);
 
 document.addEventListener('mousemove', updateSlider);
 document.addEventListener('touchmove', updateSlider);
+
+// Adiciona event listeners aos emojis
+emojisArr.forEach((emoji, index) => {
+  emoji.addEventListener('click', () => {
+    const percentage = index * 25;
+    updateEmojis(percentage);
+    updateSliderPosition(percentage);
+  });
+});

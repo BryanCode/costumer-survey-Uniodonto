@@ -70,7 +70,6 @@
                     </div>
                   </div>
         </div>    
-        
     </div>   
     
     <div class="container" style="display: none;">
@@ -79,9 +78,8 @@
           <div class="slider-thumb" id="sliderThumb" style="left: 50%;">
             <img src="arrow.png" alt="seta" class="seta">
           </div>   
-         
         </div>
-      </div>
+    </div>
 
     <script>
         const finishBtn = document.querySelector('.finish-btn');
@@ -122,27 +120,8 @@
                 dataAtendimento: formatDate(new Date()),
             }
 
-            console.log(avaliacaoAtendimento);
 
-            //url do firebase
-            const urlFirebase = 'https://agendadentistadb-default-rtdb.firebaseio.com/'
-
-
-            fetch(urlFirebase + 'atendimentos.json', {
-                method: 'POST',
-                body: JSON.stringify(avaliacaoAtendimento),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-            
+           
 
 
         });
