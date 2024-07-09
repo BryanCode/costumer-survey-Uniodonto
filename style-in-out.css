@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&display=swap');
 
 body, html {
+  padding-top: 3em !important;
    transition: .3s;
     margin: 0;
     max-height: 100vh;
@@ -66,7 +67,7 @@ label {
   filter: invert(100%) contrast(100%) brightness(200%); 
   width: 100%;
   left: -50%;
-  top: -100%;
+  top: -80%;
   animation: rotate 80s linear infinite;
 }
 
