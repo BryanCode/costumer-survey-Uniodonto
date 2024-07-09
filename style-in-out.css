@@ -67,7 +67,7 @@ label {
   filter: invert(100%) contrast(100%) brightness(200%); 
   width: 100%;
   left: -50%;
-  top: -80%;
+  top: -50%;
   animation: rotate 80s linear infinite;
 }
 
