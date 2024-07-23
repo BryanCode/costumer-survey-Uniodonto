@@ -112,6 +112,7 @@
             }
 
             var avaliacaoAtendimento = {
+               tipoAtendimento : localStorage.getItem('tipoAtendimento'),
                 telefonePacientente: localStorage.getItem('telefonePaciente'),
                 nomePacientente: localStorage.getItem('nomePaciente'),
                 rastreioPaciente: localStorage.getItem('rastreioPaciente'),
@@ -130,7 +131,7 @@
             sendData(avaliacaoAtendimento);
 
               
-           // window.location.href = 'encerramento.html';
+           window.location.href = 'encerramento.html';
             
 
 
