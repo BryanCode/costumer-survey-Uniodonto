@@ -6,6 +6,29 @@ const emojisArr = document.querySelectorAll('.emoji');
 var sliderPosition = 50;
 let isDragging = false;
 
+const url = 'https://satisfaction-survey-25a8f-default-rtdb.firebaseio.com/avaliacaoAtendimento.json';
+
+
+//função para enviar os dados para o firebase 
+function sendData(avaliacaoAtendimento) {
+
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(avaliacaoAtendimento),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+}
+
 // Apenas uma checkbox marcada por vez
 document.querySelectorAll('.checks input').forEach((checkbox) => {
   checkbox.addEventListener('change', function() {
