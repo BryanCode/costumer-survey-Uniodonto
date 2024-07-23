@@ -15,10 +15,10 @@
     <img class="us" src="Us.png" alt="" style="left: 0 !important;">
 
     <div id="app">
-        <div class="row">
+        <div class="row" style="padding-top: 4em;">
             <div class="col-12" style="justify-content: center; display: flex; align-items: center; flex-direction: column;">
                 <h5 class="text-center">Encerramento</h5>
-                <button class="btn btn-primary prev-btn">Inicio</button>
+                <button class="btn btn-primary prev-btn" style="color: black;">Inicio</button>
 
             </div>
         </div>
@@ -49,37 +49,13 @@
 
         const overlay = document.querySelector('.overlay');
 
-        urgenciaBtn.addEventListener('click', () => {
-
-            localStorage.setItem('tipoAtendimento', 'Urgência 24h');
-
-            const view = document.getElementById('app');
-            overlay.style.transform = 'translateY(0)';
-            view.style.transform = 'translateY(-100%)';
-            view.style.opacity = '0';
-            setTimeout(() => {
-            window.location.href = 'aparenciaConsultorio.html';
-            }, 200);
-
-        });
+       
 
         prevBtn.addEventListener('click', () => {
           window.location.href = 'index.html';
         });
 
-        renovaBtn.addEventListener('click', () => {
-
-            localStorage.setItem('tipoAtendimento', 'Renova Implantes');
-
-            const view = document.getElementById('app');
-            overlay.style.transform = 'translateY(0)';
-            view.style.transform = 'translateY(-100%)';
-            view.style.opacity = '0';
-            setTimeout(() => {
-            window.location.href = 'aparenciaConsultorio.html';
-            }, 200);
-
-        });
+     
         
     </script>
     <script src="script.js"></script>
