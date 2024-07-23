@@ -94,6 +94,10 @@
 
         finishBtn.addEventListener('click', () => {
 
+          setTimeout(() => {
+
+  
+
             localStorage.setItem('nomePaciente', document.getElementById('name').value);
             localStorage.setItem('telefonePaciente', document.getElementById('contactNumber').value);
 
@@ -130,10 +134,12 @@
 
             sendData(avaliacaoAtendimento);
 
-              
+          
+
+          }, 500);
+
            window.location.href = 'encerramento.html';
             
-
 
         });
 

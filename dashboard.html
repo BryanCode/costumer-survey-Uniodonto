@@ -47,32 +47,32 @@
     <div class="accordion" id="feedbackAccordion">
         <!-- Feedback items will be inserted here -->
     </div>
-    <table  class="d-none table table-bordered metrics-table">
-        <thead>
-            <tr>
-                <th>Total de Avaliações</th>
-                <th>Média de Aparência do Consultório</th>
-                <th>Média de Clareza da Comunicação</th>
-                <th>Média de Competência do Dentista</th>
-                <th>Média de Confiança Transmitida</th>
-                <th>Média de Cortesia do Dentista</th>
-                <th>Média de Cortesia da Recepção</th>
-                <th>Média de Qualidade dos Equipamentos</th>
-            </tr>
-        </thead>
-        <tbody id="metricsTableBody">
-            <!-- Metrics will be inserted here -->
-        </tbody>
-    </table>
+
+    <ul class="list-group mt-4" id="metricsList">
+        <li class="list-group-item"><strong>Total de Avaliações:</strong> <span id="totalAvaliacoes"></span></li>
+        <li class="list-group-item"><strong>Péssimo:</strong> <span id="percentPessimo"></span>%</li>
+        <li class="list-group-item"><strong>Ruim:</strong> <span id="percentRuim"></span>%</li>
+        <li class="list-group-item"><strong>Regular:</strong> <span id="percentRegular"></span>%</li>
+        <li class="list-group-item"><strong>Bom:</strong> <span id="percentBom"></span>%</li>
+        <li class="list-group-item"><strong>Excelente:</strong> <span id="percentExcelente"></span>%</li>
+    </ul>
+    <ul class="list-group mt-4" id="averageList">
+        <li class="list-group-item"><strong>Média de Aparência do Consultório:</strong> <span id="mediaAparenciaConsultorio"></span></li>
+        <li class="list-group-item"><strong>Média de Clareza da Comunicação:</strong> <span id="mediaClarezaComunicacao"></span></li>
+        <li class="list-group-item"><strong>Média de Competência do Dentista:</strong> <span id="mediaCompetenciaDentista"></span></li>
+        <li class="list-group-item"><strong>Média de Confiança Transmitida:</strong> <span id="mediaConfiancaTransmitida"></span></li>
+        <li class="list-group-item"><strong>Média de Cortesia do Dentista:</strong> <span id="mediaCortesiaDentista"></span></li>
+        <li class="list-group-item"><strong>Média de Cortesia da Recepção:</strong> <span id="mediaCortesiaRecepcao"></span></li>
+        <li class="list-group-item"><strong>Média de Qualidade dos Equipamentos:</strong> <span id="mediaQualidadeEquipamentos"></span></li>
+    </ul>
 </div>
 
 <script>
-
     document.getElementById('refreshButton').addEventListener('click', function() {
         location.reload();
     });
 
-     document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         fetch('https://satisfaction-survey-25a8f-default-rtdb.firebaseio.com/avaliacaoAtendimento.json')
             .then(response => response.json())
             .then(data => {
@@ -80,6 +80,12 @@
                 let feedbackHtml = '';
 
                 let totalAvaliacoes = 0;
+                let countPessimo = 0;
+                let countRuim = 0;
+                let countRegular = 0;
+                let countBom = 0;
+                let countExcelente = 0;
+
                 let somaAparenciaConsultorio = 0;
                 let somaClarezaComunicacao = 0;
                 let somaCompetenciaDentista = 0;
@@ -99,6 +105,7 @@
                     const cortesiaDentista = convertRatingToNumber(feedback.cortesiaDentista);
                     const cortesiaRecepcao = convertRatingToNumber(feedback.cortesiaRecepcao);
                     const qualidadeEquipamentos = convertRatingToNumber(feedback.qualidadeEquipamentos);
+                    const satisfacaoGeral = feedback.satisfacaoGeral.toLowerCase();
 
                     somaAparenciaConsultorio += aparenciaConsultorio;
                     somaClarezaComunicacao += clarezaComunicacao;
@@ -108,10 +115,22 @@
                     somaCortesiaRecepcao += cortesiaRecepcao;
                     somaQualidadeEquipamentos += qualidadeEquipamentos;
 
+                    if (satisfacaoGeral === 'péssimo') {
+                        countPessimo++;
+                    } else if (satisfacaoGeral === 'ruim') {
+                        countRuim++;
+                    } else if (satisfacaoGeral === 'regular') {
+                        countRegular++;
+                    } else if (satisfacaoGeral === 'bom') {
+                        countBom++;
+                    } else if (satisfacaoGeral === 'excelente') {
+                        countExcelente++;
+                    }
+
                     let satisfactionClass = '';
-                    if (feedback.satisfacaoGeral.toLowerCase() === 'péssimo') {
+                    if (satisfacaoGeral === 'péssimo') {
                         satisfactionClass = 'worst-feedback';
-                    } else if (feedback.satisfacaoGeral.toLowerCase() === 'excelente') {
+                    } else if (satisfacaoGeral === 'excelente') {
                         satisfactionClass = 'excellent-feedback';
                     }
 
@@ -144,30 +163,32 @@
 
                 feedbackAccordion.innerHTML = feedbackHtml;
 
-                const metricsTableBody = document.getElementById('metricsTableBody');
-                metricsTableBody.innerHTML = `
-                    <tr>
-                        <td>${totalAvaliacoes}</td>
-                        <td>${(somaAparenciaConsultorio / totalAvaliacoes).toFixed(2)}</td>
-                        <td>${(somaClarezaComunicacao / totalAvaliacoes).toFixed(2)}</td>
-                        <td>${(somaCompetenciaDentista / totalAvaliacoes).toFixed(2)}</td>
-                        <td>${(somaConfiancaTransmitida / totalAvaliacoes).toFixed(2)}</td>
-                        <td>${(somaCortesiaDentista / totalAvaliacoes).toFixed(2)}</td>
-                        <td>${(somaCortesiaRecepcao / totalAvaliacoes).toFixed(2)}</td>
-                        <td>${(somaQualidadeEquipamentos / totalAvaliacoes).toFixed(2)}</td>
-                    </tr>
-                `;
+                // Atualiza as métricas
+                document.getElementById('totalAvaliacoes').textContent = totalAvaliacoes;
+                document.getElementById('percentPessimo').textContent = ((countPessimo / totalAvaliacoes) * 100).toFixed(2);
+                document.getElementById('percentRuim').textContent = ((countRuim / totalAvaliacoes) * 100).toFixed(2);
+                document.getElementById('percentRegular').textContent = ((countRegular / totalAvaliacoes) * 100).toFixed(2);
+                document.getElementById('percentBom').textContent = ((countBom / totalAvaliacoes) * 100).toFixed(2);
+                document.getElementById('percentExcelente').textContent = ((countExcelente / totalAvaliacoes) * 100).toFixed(2);
+
+                document.getElementById('mediaAparenciaConsultorio').textContent = (somaAparenciaConsultorio / totalAvaliacoes).toFixed(2) + '%';
+                document.getElementById('mediaClarezaComunicacao').textContent = (somaClarezaComunicacao / totalAvaliacoes).toFixed(2) + '%';
+                document.getElementById('mediaCompetenciaDentista').textContent = (somaCompetenciaDentista / totalAvaliacoes).toFixed(2) + '%';
+                document.getElementById('mediaConfiancaTransmitida').textContent = (somaConfiancaTransmitida / totalAvaliacoes).toFixed(2) +'%';
+                document.getElementById('mediaCortesiaDentista').textContent = (somaCortesiaDentista / totalAvaliacoes).toFixed(2) + '%';
+                document.getElementById('mediaCortesiaRecepcao').textContent = (somaCortesiaRecepcao / totalAvaliacoes).toFixed(2) + '%';
+                document.getElementById('mediaQualidadeEquipamentos').textContent = (somaQualidadeEquipamentos / totalAvaliacoes).toFixed(2) + '%';
             })
             .catch(error => console.error('Error fetching data:', error));
 
         function convertRatingToNumber(rating) {
             switch (rating.toLowerCase()) {
-                case 'péssimo': return 1;
-                case 'ruim': return 2;
-                case 'regular': return 3;
-                case 'bom': return 4;
-                case 'excelente': return 5;
-                default: return 0;
+                case 'péssimo': return 0;
+                case 'ruim': return 25;
+                case 'regular': return 50;
+                case 'bom': return 75;
+                case 'excelente': return 100;
+                default: return 50;
             }
         }
     });
