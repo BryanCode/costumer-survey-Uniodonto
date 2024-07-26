@@ -94,11 +94,10 @@
 
         finishBtn.addEventListener('click', () => {
 
-          setTimeout(() => {
-
+        
   
 
-            localStorage.setItem('nomePaciente', document.getElementById('name').value);
+          localStorage.setItem('nomePaciente', document.getElementById('name').value);
             localStorage.setItem('telefonePaciente', document.getElementById('contactNumber').value);
 
             //seleciona qual o checkbox que esta selecionado
@@ -116,7 +115,7 @@
             }
 
             var avaliacaoAtendimento = {
-               tipoAtendimento : localStorage.getItem('tipoAtendimento'),
+                tipoAtendimento : localStorage.getItem('tipoAtendimento'),
                 telefonePacientente: localStorage.getItem('telefonePaciente'),
                 nomePacientente: localStorage.getItem('nomePaciente'),
                 rastreioPaciente: localStorage.getItem('rastreioPaciente'),
@@ -136,11 +135,11 @@
 
           
 
+          setTimeout(function() {
+            window.location.href = 'encerramento.html';
           }, 500);
 
-           window.location.href = 'encerramento.html';
             
-
         });
 
         prevBtn.addEventListener('click', () => {
