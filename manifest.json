@@ -6,7 +6,7 @@
   "orientation": "landscape",
   "scope": "/",
   "short_name": "Pesquisa de astisfação",
-  "start_url": "https://homologsatisfacao.uniodontopoa.com.br/",
+  "start_url": "https://bryancode.github.io/costumer-survey-Uniodonto/",
   "theme_color": "#e0ff7a",
   "description": "Satisfaction Survey",
   "display_override": [

@@ -10,20 +10,22 @@
 <body>
 
     <div id="app" >
+      <p style="font-size: 20px; font-weight: 600;" class="text-center">09/10</p>
+
         <h5 class="text-center">Envie um comentário</h5>
+
         <form>
           
         
          
           <div class="form-group">
-            <label for="feedback">Sua sugestão ou elogio:</label>
             <textarea class="form-control" id="feedback" rows="5" placeholder="Escreva aqui sua sugestão ou elogio"></textarea>
           </div>
           <div class="row botoes">
             <div class="col-12">
                 <button class="btn btn-primary prev-btn" type="button">Anterior</button>
         
-                        <button class="btn btn-primary next-btn" type="button">Proximo</button>
+                <button class="btn btn-primary next-btn" type="button">Proximo</button>
             </div>
         </div>
         </form>
@@ -40,6 +42,11 @@
     </div>    
  
      <script>
+       //caso fique mais de 1 minuto inativo, direcione para index.html
+       setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 60000);  
+         
         const nextBtn = document.querySelector('.next-btn');
         const prevBtn = document.querySelector('.prev-btn');
 

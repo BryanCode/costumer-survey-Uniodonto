@@ -6,7 +6,7 @@ const emojisArr = document.querySelectorAll('.emoji');
 var sliderPosition = 50;
 let isDragging = false;
 
-const url = 'https://satisfaction-survey-25a8f-default-rtdb.firebaseio.com/avaliacaoAtendimento.json';
+const url = 'https://pesquisa-de-satisfacao-987f1-default-rtdb.firebaseio.com/avaliacaoAtendimento.json';
 
 
 //função para enviar os dados para o firebase 
@@ -165,3 +165,27 @@ emojisArr.forEach((emoji, index) => {
     updateSliderPosition(percentage);
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const monthsDropdown = document.getElementById('monthsDropdown');
+
+  // Função para obter os 12 meses em torno do mês atual
+  function getSurroundingMonths() {
+      const months = [];
+      const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
+                          "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+      const today = new Date();
+      const currentMonth = today.getMonth();
+
+      for (let i = -6; i <= 6; i++) {
+          const date = new Date(today.getFullYear(), currentMonth + i, 1);
+          const monthName = monthNames[date.getMonth()];
+          const monthYear = `${monthName} ${date.getFullYear()}`;
+          months.push(monthYear);
+      }
+
+      return months;
+  }
+
+});
+

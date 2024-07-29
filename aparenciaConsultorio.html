@@ -13,7 +13,10 @@
     <div id="app">
         <div class="row" style="margin-bottom: 1em;">
             <div class="col-12">
+                <p style="font-size: 20px; font-weight: 600;" class="text-center">02/10</p>
+
                 <h5 class="text-center">Aparencia do consultório:</h5>
+
             </div>
         </div>
         <div class="row">
@@ -58,6 +61,12 @@
     </div>    
     <script>
 
+        //caso fique mais de 1 minuto inativo, direcione para index.html
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 60000);  
+         
+
         const nextBtn = document.querySelector('.next-btn');
         const prevBtn = document.querySelector('.prev-btn');
 
@@ -78,7 +87,7 @@
             const view = document.getElementById('app');
             view.style.opacity = '0';
             setTimeout(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'cortesiaRecepcao.html';
             }, 200);
         });
 

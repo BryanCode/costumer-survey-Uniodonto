@@ -13,7 +13,10 @@
         <div class="row" style="margin-bottom: 1em;">
             <div class="col-12">
                 <h1 class="text-center">Ajude-nos a melhorar</h1>
+                <p style="font-size: 20px; font-weight: 600;" class="text-center">07/10</p>
+
                 <h5 class="text-center">Competência do cirurgiâo dentista:</h5>
+
             </div>
         </div>
         <div class="row">
@@ -55,6 +58,12 @@
     </div>    
  
      <script>
+         //caso fique mais de 1 minuto inativo, direcione para index.html
+         setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 60000);  
+         
+        
         const nextBtn = document.querySelector('.next-btn');
         const prevBtn = document.querySelector('.prev-btn');
         nextBtn.addEventListener('click', () => {
@@ -64,12 +73,12 @@
             const view = document.getElementById('app');
             view.style.opacity = '0';
             setTimeout(() => {
-                window.location.href = 'clarezaComunicacao.html';
+                window.location.href = 'satisfacaoGeral.html';
             }, 200);
         });
 
         prevBtn.addEventListener('click', () => {
-            window.location.href = 'confiancaTransmitida.html';
+            window.location.href = 'clarezaComunicacao.html';
         });
     </script>
     <script src="script.js"></script>

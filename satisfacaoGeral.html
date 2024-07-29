@@ -13,7 +13,10 @@
         <div class="row" style="margin-bottom: 1em;">
             <div class="col-12">
                 <h1 class="text-center">Ajude-nos a melhorar</h1>
+                <p style="font-size: 20px; font-weight: 600;" class="text-center">08/10</p>
+
                 <h5 class="text-center">Satisfação geral com o atendimento:</h5>
+
             </div>
         </div>
         <div class="row">
@@ -55,6 +58,11 @@
     </div>    
  
      <script>
+         //caso fique mais de 1 minuto inativo, direcione para index.html
+         setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 60000);  
+         
         const nextBtn = document.querySelector('.next-btn');
         const prevBtn = document.querySelector('.prev-btn');
 
@@ -70,7 +78,7 @@
         });
 
         prevBtn.addEventListener('click', () => {
-            window.location.href = 'clarezaComunicacao.html';
+            window.location.href = 'competenciaDentista.html';
         });
     </script>
     <script src="script.js"></script>

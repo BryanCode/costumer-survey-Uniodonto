@@ -13,7 +13,10 @@
     <div id="app" >
         <div class="row" style="margin-bottom: 1em;">
             <div class="col-12">
+              <p style="font-size: 20px; font-weight: 600;" class="text-center">10/10</p>
+
                 <h5 style="margin-top: .2em !important;" class="text-center">Identifique-se (opcional)</h5>
+
             </div>
         </div>
         <div class="row">
@@ -25,7 +28,7 @@
                   </div>
                   <div class="form-group">
                     <label for="contactNumber">Número de Contato</label>
-                    <input type="tel" class="form-control" id="contactNumber" placeholder="Informe seu número de contato">
+                    <input type="tel" class="form-control" id="contactNumber" placeholder="número de contato" oninput="applyMask(this)" style="width: 10em;">
                   </div>
                   <div class="form-group" id="divRastreio">
                     <label>Como ficou sabendo deste atendimento?</label>
@@ -82,6 +85,31 @@
     </div>
 
     <script>
+        function applyMask(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove tudo o que não é dígito
+            let formattedValue = '';
+
+            if (value.length > 0) {
+                formattedValue += '(' + value.substring(0, 2); // Adiciona o código de área
+            }
+            if (value.length > 2) {
+                formattedValue += ') ' + value.substring(2, 3); // Adiciona o primeiro dígito do número
+            }
+            if (value.length > 3) {
+                formattedValue += ' ' + value.substring(3, 7); // Adiciona os próximos quatro dígitos
+            }
+            if (value.length > 7) {
+                formattedValue += '-' + value.substring(7, 11); // Adiciona o hífen e os últimos quatro dígitos
+            }
+
+            input.value = formattedValue;
+        }
+       //caso fique mais de 1 minuto inativo, direcione para index.html
+       setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 60000);  
+         
+
         const finishBtn = document.querySelector('.finish-btn');
         const prevBtn = document.querySelector('.prev-btn');
 
@@ -94,10 +122,7 @@
 
         finishBtn.addEventListener('click', () => {
 
-        
-  
-
-          localStorage.setItem('nomePaciente', document.getElementById('name').value);
+            localStorage.setItem('nomePaciente', document.getElementById('name').value);
             localStorage.setItem('telefonePaciente', document.getElementById('contactNumber').value);
 
             //seleciona qual o checkbox que esta selecionado
@@ -136,10 +161,11 @@
           
 
           setTimeout(function() {
-            window.location.href = 'encerramento.html';
-          }, 500);
+           window.location.href = 'encerramento.html';
+          }, 600);
 
             
+
         });
 
         prevBtn.addEventListener('click', () => {

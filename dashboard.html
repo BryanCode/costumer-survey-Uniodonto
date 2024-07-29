@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback List</title>
+    <title>Dashboard - Pesquisa de satisfação</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
-            background-color: #E0FF7A;
+            background-color: #c2c2c2;
             padding: 20px;
+            padding-bottom: 5em;
         }
         .accordion-button:not(.collapsed) {
             color: #A60069;
             background-color: #e7f1ff;
         }
+        .metrics {
+            height: 0;
+            overflow: hidden;
+        }
         .accordion-button {
-            color: #A60069;
+            color: #242424;
+            padding: .5em;
+            font-weight: 500;
         }
         .accordion-body {
             color: #A60069;
@@ -28,7 +37,7 @@
             background-color: #f8d7da;
         }
         .accordion-item {
-            margin-bottom: 1rem;
+            border: #0e0e0e 1px solid;
         }
         .worst-feedback {
             background-color: rgba(241, 200, 200, 0.753);
@@ -36,44 +45,100 @@
         .excellent-feedback {
             background-color: rgba(143, 221, 143, 0.658);
         }
+
+        .dropdown button{
+            background-color: #A60069;
+        }
+
+        .dropdown li a:hover {
+            background-color: #A60069;
+            color: white;
+        }
+
+        .dropdown li {
+            width: 100%;
+        }
+        h1 {
+            color: #A60069;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1 class="mb-4" style="color: #A60069;">Pesquisa de satisfação - Dashboard</h1>
-    <button id="refreshButton" class="btn btn-primary mb-4" style="background-color: #A60069; border-color: #A60069;"><i class="fa-solid fa-rotate"></i></button>
+            <div class="container">
+                <h1 class="mb-4 text-center" style="color: #A60069;">Pesquisa de satisfação - Dashboard</h1> 
+                    <div class="row mb-2">
+                        <div class="dropdown"> 
+                            <button  class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Selecione um mês
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="dropdown-menu">
+                            </ul>
+                            <button id="refreshButton" class="btn btn-primary" style="background-color: #A60069; border-color: #A60069;"><i class="fa-solid fa-rotate"></i></button>
+                        </div>
+                    </div>
+                <h1 class="text-center">Avaliações:</h1>
+                    <div class="accordion" id="feedbackAccordion">
+                        <!-- Feedback items will be inserted here -->
+                    </div>
+                <!-- quantidade de itens alinhado a esquerda -->
 
-    <div class="accordion" id="feedbackAccordion">
-        <!-- Feedback items will be inserted here -->
-    </div>
+                    
+                    <p id="totalFeedbacks" class="text-left mt-1 ml-2" style="font-weight: bold; color: #000000;"></p>
 
-    <ul class="list-group mt-4" id="metricsList">
-        <li class="list-group-item"><strong>Total de Avaliações:</strong> <span id="totalAvaliacoes"></span></li>
-        <li class="list-group-item"><strong>Péssimo:</strong> <span id="percentPessimo"></span>%</li>
-        <li class="list-group-item"><strong>Ruim:</strong> <span id="percentRuim"></span>%</li>
-        <li class="list-group-item"><strong>Regular:</strong> <span id="percentRegular"></span>%</li>
-        <li class="list-group-item"><strong>Bom:</strong> <span id="percentBom"></span>%</li>
-        <li class="list-group-item"><strong>Excelente:</strong> <span id="percentExcelente"></span>%</li>
-    </ul>
-    <ul class="list-group mt-4" id="averageList">
-        <li class="list-group-item"><strong>Média de Aparência do Consultório:</strong> <span id="mediaAparenciaConsultorio"></span></li>
-        <li class="list-group-item"><strong>Média de Clareza da Comunicação:</strong> <span id="mediaClarezaComunicacao"></span></li>
-        <li class="list-group-item"><strong>Média de Competência do Dentista:</strong> <span id="mediaCompetenciaDentista"></span></li>
-        <li class="list-group-item"><strong>Média de Confiança Transmitida:</strong> <span id="mediaConfiancaTransmitida"></span></li>
-        <li class="list-group-item"><strong>Média de Cortesia do Dentista:</strong> <span id="mediaCortesiaDentista"></span></li>
-        <li class="list-group-item"><strong>Média de Cortesia da Recepção:</strong> <span id="mediaCortesiaRecepcao"></span></li>
-        <li class="list-group-item"><strong>Média de Qualidade dos Equipamentos:</strong> <span id="mediaQualidadeEquipamentos"></span></li>
-    </ul>
-</div>
+                    <!-- botao para abrir as metricas-->
+                     <button id="metricsButton" class="btn btn-primary mt-4 text-center" style="background-color: #A60069;">Estatísticas</button>
+        <section class="metrics">            
+                <h1 class="mt-4 text-center">Estatísticas:</h1>
 
+                <h3>média de satisfação geral:</h3>
+                <ul class="list-group mb-3" id="metricsList">
+                    <li class="list-group-item"><strong>Total de Avaliações:</strong> <span id="totalAvaliacoes"></span></li>
+                    <li class="list-group-item"><strong>Péssimo:</strong> <span id="percentPessimo"></span>%</li>
+                    <li class="list-group-item"><strong>Ruim:</strong> <span id="percentRuim"></span>%</li>
+                    <li class="list-group-item"><strong>Regular:</strong> <span id="percentRegular"></span>%</li>
+                    <li class="list-group-item"><strong>Bom:</strong> <span id="percentBom"></span>%</li>
+                    <li class="list-group-item"><strong>Excelente:</strong> <span id="percentExcelente"></span>%</li>
+                </ul>
+                <h3>média de cada item:</h3>
+                <ul class="list-group" id="averageList">
+                    <li class="list-group-item"><strong>Média de Aparência do Consultório:</strong> <span id="mediaAparenciaConsultorio"></span></li>
+                    <li class="list-group-item"><strong>Média de Clareza da Comunicação:</strong> <span id="mediaClarezaComunicacao"></span></li>
+                    <li class="list-group-item"><strong>Média de Competência do Dentista:</strong> <span id="mediaCompetenciaDentista"></span></li>
+                    <li class="list-group-item"><strong>Média de Confiança Transmitida:</strong> <span id="mediaConfiancaTransmitida"></span></li>
+                    <li class="list-group-item"><strong>Média de Cortesia do Dentista:</strong> <span id="mediaCortesiaDentista"></span></li>
+                    <li class="list-group-item"><strong>Média de Cortesia da Recepção:</strong> <span id="mediaCortesiaRecepcao"></span></li>
+                    <li class="list-group-item"><strong>Média de Qualidade dos Equipamentos:</strong> <span id="mediaQualidadeEquipamentos"></span></li>
+                </ul>
+            </div>
+        </section>    
 <script>
+
+    const metricsBtn = document.getElementById('metricsButton');
+    let isMetrics = false;
+
+    metricsBtn.addEventListener('click', function() {
+        const metricsSection = document.querySelector('.metrics');
+        
+        if (!isMetrics) {
+            metricsSection.style.height = '100%';
+            isMetrics = true;
+        } else {
+            metricsSection.style.height = '0';
+            isMetrics = false;
+        }
+
+    });
+
     document.getElementById('refreshButton').addEventListener('click', function() {
         location.reload();
     });
 
+    
+
     document.addEventListener('DOMContentLoaded', function() {
-        fetch('https://satisfaction-survey-25a8f-default-rtdb.firebaseio.com/avaliacaoAtendimento.json')
+
+        fetch('https://pesquisa-de-satisfacao-987f1-default-rtdb.firebaseio.com/avaliacaoAtendimento.json')
             .then(response => response.json())
             .then(data => {
                 const feedbackAccordion = document.getElementById('feedbackAccordion');
@@ -94,7 +159,9 @@
                 let somaCortesiaRecepcao = 0;
                 let somaQualidadeEquipamentos = 0;
 
-                Object.keys(data).forEach((key, index) => {
+                
+
+                Object.keys(inverterObjeto(data)).forEach((key, index) => {
                     const feedback = data[key];
                     totalAvaliacoes++;
 
@@ -161,6 +228,8 @@
                     `;
                 });
 
+                document.querySelector('#totalFeedbacks').textContent = totalAvaliacoes;
+
                 feedbackAccordion.innerHTML = feedbackHtml;
 
                 // Atualiza as métricas
@@ -192,7 +261,80 @@
             }
         }
     });
+
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const dropdownButton = document.getElementById('dropdownMenuButton1');
+
+    const items = getMonthsArray();
+
+    function populateDropdown(items) {
+        items.forEach(item => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.classList.add('dropdown-item');
+            a.href = '#'; // Substitua por um link real se necessário
+            a.textContent = item;
+
+             // Atualiza o botão e realiza outras ações ao clicar no item
+            a.addEventListener('click', () => {
+            dropdownButton.textContent = item;
+            // Adicione aqui outras ações que você deseja realizar ao clicar no item,
+            // como enviar dados para o servidor, atualizar outras partes da página, etc.
+            });
+
+            li.appendChild(a);
+            dropdownMenu.appendChild(li);
+        });
+    }
+
+    function getMonthsArray() {
+  const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+  const dataAtual = new Date();   
+
+  const anoAtual = dataAtual.getFullYear();
+  const mesAtual = dataAtual.getMonth();
+
+  const mesesArray = [];
+
+  // Meses anteriores (incluindo o mês atual)
+  for (let i = mesAtual; i >= mesAtual - 11; i--) {
+    const ano = i < 0 ? anoAtual - 1 : anoAtual;
+    const mes = meses[(i + 12) % 12]; // Ajusta para meses negativos
+    mesesArray.push(`${mes}/${ano}`);
+  }
+
+  return mesesArray;
+}
+
+function inverterObjeto(obj) {
+  // Converter o objeto em um array de pares chave-valor
+  const entries = Object.entries(obj);
+  
+  // Inverter o array de pares chave-valor
+  const reversedEntries = entries.reverse();
+  
+  // Converter o array invertido de pares chave-valor de volta para um objeto
+  const reversedObject = Object.fromEntries(reversedEntries);
+  
+  return reversedObject;
+}
+
+populateDropdown(items);
+
+//atualiza a pagina a cada minuto
+setInterval(function() {
+    location.reload();
+}, 60000);
+
+
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ <!-- Bootstrap JS and dependencies -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
